@@ -18,7 +18,10 @@ app.get('/api/whoami', (req, res) => {
 });
 
 
-
+app.get('/', (req, res) => {
+    
+    res.redirect("/api/whoami");
+})
 
 app.listen(process.env.PORT, function () {
   console.log('Server is up and running!')
