@@ -1,13 +1,21 @@
-var express = require('express')
-var app = express()
-app.set("view engine","ejs");
-app.use (express.static("public"));
+var express = require('express');
+var app = express();
 
-app.get('/', function (req, res) {
 
-           res.render("index");
+app.get('/api/whoami', (req, res) => {
 
-})
+  var  myapijson = {
+    "ipaddress": req.ip,
+    "language": req.headers["accept-language"].split(",")[0],
+    "software": req.headers["user-agent"].split("(")[1].split(")")[0]
+  };
+
+  console.log(JSON.stringify(myapijson) );
+
+  res.set('Content-Type', 'application/json');
+  res.json(myapijson);
+ 
+});
 
 
 
